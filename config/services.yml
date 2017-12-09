@@ -1,0 +1,51 @@
+services:
+    DigiByte.digiid.controller.main:
+        class: DigiByte\digiid\controller\main
+        arguments:
+            - '@auth'
+            - '@dbal.conn'
+            - '@config'
+            - '@controller.helper'
+            - '@request'
+            - '@template'
+            - '@user'
+
+    DigiByte.digiid.controller.login:
+        class: DigiByte\digiid\controller\login
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@controller.helper'
+            - '@request'
+            - '@template'
+            - '@user'
+
+    DigiByte.digiid.controller.callback:
+        class: DigiByte\digiid\controller\callback
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@controller.helper'
+            - '@request'
+            - '@template'
+            - '@user'
+
+    DigiByte.digiid.controller.ajax:
+        class: DigiByte\digiid\controller\ajax
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@controller.helper'
+            - '@request'
+            - '@template'
+            - '@user'
+
+    DigiByte.digiid.listener:
+        class: DigiByte\digiid\event\main_listener
+        arguments:
+            - '@controller.helper'
+            - '@template'
+            - '@user'
+            - '%core.php_ext%'
+        tags:
+            - { name: event.listener }

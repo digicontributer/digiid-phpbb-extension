@@ -1,0 +1,54 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id='digiid'>
+	<p>
+		<span>Login with DigiID:</span>
+	</p>
+</div>
+<a href='{URL}'>
+    <img src='https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl={URL}' alt='digiid login' title='DigiID Login' />
+</a>
+
+<script>
+var digiid_interval_resource;
+digiid_interval_resource = setInterval(
+	function()
+	{
+		var ajax = new XMLHttpRequest();
+		ajax.open("GET", "/digiid/ajax", true);
+		ajax.onreadystatechange =
+			function ()
+			{
+				if(ajax.readyState != 4 || ajax.status != 200)
+				{
+					return;
+				}
+				else if(ajax.responseText > '')
+				{
+					var json = JSON.parse(ajax.responseText);
+
+					if(json.html > '')
+					{
+						document.getElementById('digiid').innerHTML = json.html;
+					}
+
+					if(json.stop > 0)
+					{
+						window.clearInterval(digiid_interval_resource);
+					}
+
+					if(json.reload > 0)
+					{
+                        setTimeout(function(){
+                            document.location.href="/";
+                        }, 3000);
+					}
+				}
+			};
+		ajax.send();
+	},
+	3000
+);
+</script>
+
+<!-- INCLUDE overall_footer.html -->

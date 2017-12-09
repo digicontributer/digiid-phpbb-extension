@@ -1,0 +1,3 @@
+DigiByte_digiid_controller:
+    path: /digiid/{name}
+    defaults: { _controller: DigiByte.digiid.controller.main:handle }
