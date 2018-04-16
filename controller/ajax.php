@@ -110,7 +110,7 @@ class ajax
 								$result = $this->user->session_create($user_row['user_id'], false);
 								if($result)
 								{
-									$data['html'] = "<p>Sucess, logged in as " . $this->user->data['username'] . "</p>";
+									$data['html'] = "<p>Success, logged in as " . $this->user->data['username'] . "</p>";
 									$data['reload'] = 1;
 
 									$sql = "UPDATE " . $table_name_userlink . " SET " .  $this->db->sql_build_array('UPDATE', array(
