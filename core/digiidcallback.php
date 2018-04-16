@@ -41,7 +41,7 @@ class DigiIDCallback
 		$date = new datetime($this->user);
 		$THREE_HOURS = 10800;
 		$three_hours_ago = $date->getTimestamp() - $THREE_HOURS;
-		$query = "DELETE FROM phpbb_digibyte_digiid_nonce WHERE birth < " . (int) $three_hours_ago;
+		$query = "DELETE FROM " . $table_name_nonce . " WHERE birth < " . (int) $three_hours_ago;
 		$result = $this->db->sql_query($query);
 
 		$query = 'SELECT * 
