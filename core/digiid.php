@@ -36,6 +36,7 @@ require_once("Signature.php");
 require_once("NumberTheory.php");
 require_once("PublicKeyInterface.php");
 require_once("PublicKey.php");
+require_once("digiidcallback.php");
 
 
 /**
