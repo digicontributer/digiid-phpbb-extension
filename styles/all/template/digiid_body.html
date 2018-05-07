@@ -15,7 +15,7 @@ digiid_interval_resource = setInterval(
 	function()
 	{
 		var ajax = new XMLHttpRequest();
-		ajax.open("GET", "/digiid/ajax", true);
+		ajax.open("GET", "../digiid/ajax", true);
 		ajax.onreadystatechange =
 			function ()
 			{
@@ -40,14 +40,14 @@ digiid_interval_resource = setInterval(
 					if(json.reload > 0)
 					{
                         setTimeout(function(){
-                            document.location.href="/";
+                            document.location.href="../";
                         }, 3000);
 					}
 				}
 			};
 		ajax.send();
 	},
-	3000
+	2000
 );
 </script>
 
