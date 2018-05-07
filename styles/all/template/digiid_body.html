@@ -1,13 +1,55 @@
 <!-- INCLUDE overall_header.html -->
+<div class="panel">
+	<div class="inner">
 
-<div id='digiid'>
-	<p>
-		<span>Login with DigiID:</span>
-	</p>
+	<div class="content">
+		<h2 class="login-title">Login With Username/Password</h2>
+
+		<fieldset <!-- IF not S_CONFIRM_CODE -->class="fields1"<!-- ELSE -->class="fields2"<!-- ENDIF -->>
+		<!-- IF LOGIN_ERROR --><div class="error">{LOGIN_ERROR}</div><!-- ENDIF -->
+		<dl>
+			<dt><label for="{USERNAME_CREDENTIAL}">{L_USERNAME}{L_COLON}</label></dt>
+			<dd><input type="text" tabindex="1" name="{USERNAME_CREDENTIAL}" id="{USERNAME_CREDENTIAL}" size="25" value="{USERNAME}" class="inputbox autowidth" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="{PASSWORD_CREDENTIAL}">{L_PASSWORD}{L_COLON}</label></dt>
+			<dd><input type="password" tabindex="2" id="{PASSWORD_CREDENTIAL}" name="{PASSWORD_CREDENTIAL}" size="25" class="inputbox autowidth" autocomplete="off" /></dd>
+			<!-- IF S_DISPLAY_FULL_LOGIN and (U_SEND_PASSWORD or U_RESEND_ACTIVATION) -->
+				<!-- IF U_SEND_PASSWORD --><dd><a href="{U_SEND_PASSWORD}">{L_FORGOT_PASS}</a></dd><!-- ENDIF -->
+				<!-- IF U_RESEND_ACTIVATION --><dd><a href="{U_RESEND_ACTIVATION}">{L_RESEND_ACTIVATION}</a></dd><!-- ENDIF -->
+			<!-- ENDIF -->
+		</dl>
+		<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+			<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
+			<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+		<!-- ENDIF -->
+		<!-- IF S_DISPLAY_FULL_LOGIN -->
+		<dl>
+			<!-- IF S_AUTOLOGIN_ENABLED --><dd><label for="autologin"><input type="checkbox" name="autologin" id="autologin" tabindex="4" /> {L_LOG_ME_IN}</label></dd><!-- ENDIF -->
+			<dd><label for="viewonline"><input type="checkbox" name="viewonline" id="viewonline" tabindex="5" /> {L_HIDE_ME}</label></dd>
+		</dl>
+		<!-- ENDIF -->
+
+		{S_LOGIN_REDIRECT}
+		<dl>
+			<dt>&nbsp;</dt>
+			<dd>{S_HIDDEN_FIELDS}<input type="submit" name="login" tabindex="6" value="{L_LOGIN}" class="button1" /></dd>
+		</dl>
+		</fieldset>
+
+		<div id='digiid'>
+			<h2 class="login-title">Login With Digi-ID</h2>
+		</div>
+		<a href='{URL}'>
+			<img src='https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl={URL}' alt='digiid login' title='DigiID Login' />
+		</a>
+	</div>
+
+	<!-- IF not S_ADMIN_AUTH and PROVIDER_TEMPLATE_FILE -->
+		<!-- INCLUDE {PROVIDER_TEMPLATE_FILE} -->
+	<!-- ENDIF -->
+	</div>
 </div>
-<a href='{URL}'>
-    <img src='https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl={URL}' alt='digiid login' title='DigiID Login' />
-</a>
 
 <script>
 var digiid_interval_resource;
