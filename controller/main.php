@@ -89,7 +89,7 @@ class main
 		else if ($name === 'login')
 		{
 			$class = new login($this->config, $this->db, $this->helper, $this->request, $this->template, $this->user);
-			return $class->handle();			
+			return $class->handle($name);			
 		}
 		else if ($name === 'add')
 		{

@@ -43,7 +43,9 @@ services:
     DigiByte.digiid.listener:
         class: DigiByte\digiid\event\main_listener
         arguments:
+            - '@config'
             - '@controller.helper'
+            - '@request'
             - '@template'
             - '@user'
             - '%core.php_ext%'

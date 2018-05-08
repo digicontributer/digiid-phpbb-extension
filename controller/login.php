@@ -10,6 +10,10 @@
 
 namespace DigiByte\digiid\controller;
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $base = __DIR__ . '/../';
 require_once($base  . "./core/digiid.php");
 require_once($base  . "./core/digiidcallback.php");
@@ -64,16 +68,12 @@ class login
 	 */
 	public function handle($name = 'login')
 	{
-		global $table_prefix;
 
-		if ($this->config['DigiByte_digiid_enable'] === "1"){
 			
-			$callback = new DigiIDCallback($this->db, $this->user);
-			$digiid = $callback->get_digiid_callback('login');
-			$this->template->assign_var('URL', $digiid);
-			
-			return $this->helper->render('digiid_body.html', $name);
-		}
-		return $this->helper->render('login_body.html', $name);;
+		$callback = new DigiIDCallback($this->db, $this->user);
+		$digiid = $callback->get_digiid_callback('login');
+		$this->template->assign_var('URL', $digiid);
+		
+		return $this->helper->render('digiid_body.html', $name);
 	}
 }
