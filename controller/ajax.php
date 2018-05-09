@@ -120,13 +120,13 @@ class ajax
 								}
 								else
 								{
-									$data['html'] = "<p>" . sprintf(__("DigiID verification Sucess, but no useraccount connected to '%s'", 'digiid-authentication'), $data['adress']) . "</p>";
+									$data['html'] = "<p>" . sprintf(__("DigiID verification Success, but no useraccount connected to '%s'", 'digiid-authentication'), $data['adress']) . "</p>";
 								}
 							}
 						}
 						else
 						{
-							$data['html'] = "<p>" . sprintf(__("DigiID verification Sucess, but no useraccount connected to '%s'", 'digiid-authentication'), $data['adress']) . "</p>";
+							$data['html'] = "<p>" . sprintf(__("DigiID verification Success, but no useraccount connected to '%s'", 'digiid-authentication'), $data['adress']) . "</p>";
 						}
 					}
 					else
@@ -136,11 +136,22 @@ class ajax
 	
 					break;
 				}
+
+				case 'add':
+					if($this->user->data['user_address']) {
+						$data['status'] = 1;
+						$data['reload'] = 1;
+						$data['html'] = "<p>DigiID link success</p>";
+					} else {
+						$data['status'] = 0;
+						$data['html'] = "<p>DigiID not yet linked</p>";						
+					}
+					break;
 	
 				default:
 				{
 					$data['status'] = -1;
-					$data['html'] = "<p>" . __("Unknown action: ", 'digiid-authentication') . $user_row['nonce_action'] . "</p>";
+					$data['html'] = "<p>" . __("Unknown action: ", 'digiid-authentication') . "</p>";//$user_row['nonce_action'] . "</p>";
 					break;
 				}
 			}

@@ -37,9 +37,14 @@ class main_module
 		);
 
 		$callback = new DigiIDCallback($db, $user);
-		$digiid = $callback->digiid_get_callback_url(NULL, 'add');
+		$digiid = $callback->get_digiid_callback('add');
 
-		$template->assign_var('URL', $digiid);
+		var_dump($address);
+		if (!$address) {
+			$template->assign_var('URL', $digiid);
+		} else {
+			$template->assign_var('URL', false);
+		}
 
 		if ($request->is_set_post('submit'))
 		{

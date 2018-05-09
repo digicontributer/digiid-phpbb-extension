@@ -10,6 +10,10 @@
 
 namespace DigiByte\digiid\controller;
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $base = __DIR__ . '/../';
 require_once($base  . "./core/digiid.php");
 require_once($base  . "./core/digiidcallback.php");

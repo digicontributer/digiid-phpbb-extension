@@ -14,14 +14,47 @@
 				</dl>
 			</fieldset>
 			<div style="width: 100%; text-align: center">
-				<a href='{URL}' style="width: 100%; text-align: center">
-					<img src='https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl={URL}' alt='digiid login' title='DigiID Login' />
-				</a>
-				<span style="width: 100%; text-align: center">Scan the above QR code to link your DigiByte address!</span>
+				<span id="digiidtext"></span>
+				<!-- IF URL -->
+					<a href='{URL}' style="width: 100%; text-align: center" id="digiidqr">
+						<img src='https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl={URL}' alt='digiid login' title='DigiID Login' />
+					</a>
+					<span style="width: 100%; text-align: center">Scan the above QR code to link your DigiByte address!</span>
+				<!-- ENDIF -->
 			</div>
 		</div>
 	</div>
 </form>
+
+<script>
+	var digiid_interval_resource;
+	var qrcode = document.getElementById("digiidqr");
+	if(qrcode) {
+		digiid_interval_resource = setInterval(function() {
+			var ajax = new XMLHttpRequest();
+			ajax.open("GET", "/digiid/ajax", true);
+			ajax.onreadystatechange = function () {
+				if(ajax.readyState != 4 || ajax.status != 200)
+				{
+					return;
+				}
+				else if(ajax.responseText > '')
+				{
+					var json = JSON.parse(ajax.responseText);
+
+					if(json.reload > 0)
+					{
+						document.getElementById('digiidtext').innerHTML = 'Digi-ID Successfully linked!';
+						setTimeout(function(){
+							location.reload();
+						}, 3000);
+					}
+				}
+			};
+			ajax.send();
+		}, 2000);
+	}
+</script>
 	
 <!-- INCLUDE ucp_footer.html -->
 		
