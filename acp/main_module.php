@@ -42,7 +42,6 @@ class main_module
 
 		$template->assign_vars(array(
 			'U_ACTION'				=> $this->u_action,
-			'ACME_DEMO_GOODBYE'		=> $config['acme_demo_goodbye'],
 			'DIGIBYTE_DIGIID_ENABLE'=> $config['DigiByte_digiid_enable'],
 		));
 	}

@@ -19,6 +19,6 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ACP_DIGIID_TITLE'			=> 'DigiID Module',
-	'ACP_DIGIID_ENABLE'			=> 'Enable DigiID?',
+	'ACP_DIGIID_TITLE'			=> 'Digi-ID Module',
+	'ACP_DIGIID_ENABLE'			=> 'Enable Digi-ID?',
 ));
