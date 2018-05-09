@@ -120,13 +120,13 @@ class ajax
 								}
 								else
 								{
-									$data['html'] = "<p>" . sprintf(__("DigiID verification Success, but no useraccount connected to '%s'", 'digiid-authentication'), $data['adress']) . "</p>";
+									$data['html'] = "<p>" . sprintf(__("Dig-iID verification Success, but no useraccount connected to '%s'", 'digiid-authentication'), $data['adress']) . "</p>";
 								}
 							}
 						}
 						else
 						{
-							$data['html'] = "<p>" . sprintf(__("DigiID verification Success, but no useraccount connected to '%s'", 'digiid-authentication'), $data['adress']) . "</p>";
+							$data['html'] = "<p>" . sprintf(__("Digi-ID verification Success, but no useraccount connected to '%s'", 'digiid-authentication'), $data['adress']) . "</p>";
 						}
 					}
 					else
@@ -141,10 +141,10 @@ class ajax
 					if($this->user->data['user_address']) {
 						$data['status'] = 1;
 						$data['reload'] = 1;
-						$data['html'] = "<p>DigiID link success</p>";
+						$data['html'] = "<p>Digi-ID link success</p>";
 					} else {
 						$data['status'] = 0;
-						$data['html'] = "<p>DigiID not yet linked</p>";						
+						$data['html'] = "<p>Digi-ID not yet linked</p>";						
 					}
 					break;
 	

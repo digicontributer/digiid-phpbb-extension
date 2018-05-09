@@ -196,7 +196,7 @@ class callback
 					}
 					else
 					{
-						DigiID::http_error(51, "Can't add digiid to a userless session", 500, 'Internal Server Error');
+						DigiID::http_error(51, "Can't add digi-id to a userless session", 500, 'Internal Server Error');
 						die();
 					}
 				}
