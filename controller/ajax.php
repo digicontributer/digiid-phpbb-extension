@@ -120,13 +120,15 @@ class ajax
 								}
 								else
 								{
-									$data['html'] = "<p>" . sprintf(__("Dig-iID verification Success, but no useraccount connected to '%s'", 'digiid-authentication'), $data['adress']) . "</p>";
+									$data['stop'] = 1;
+									$data['html'] = "<p>Dig-iID verification Success, but no useraccount connected to " . $data['adress'] . "</p>";
 								}
 							}
 						}
 						else
 						{
-							$data['html'] = "<p>" . sprintf(__("Digi-ID verification Success, but no useraccount connected to '%s'", 'digiid-authentication'), $data['adress']) . "</p>";
+							$data['stop'] = 1;
+							$data['html'] = "<p>Digi-ID verification Success, but no useraccount connected to " . $data['adress'] . "</p>";
 						}
 					}
 					else
@@ -151,7 +153,7 @@ class ajax
 				default:
 				{
 					$data['status'] = -1;
-					$data['html'] = "<p>" . __("Unknown action: ", 'digiid-authentication') . "</p>";//$user_row['nonce_action'] . "</p>";
+					$data['html'] = "<p>Unknown action: </p>";
 					break;
 				}
 			}
