@@ -1,43 +1,37 @@
 <script>
 var digiid_interval_resource;
-digiid_interval_resource = setInterval(
-	function()
-	{
-		var ajax = new XMLHttpRequest();
-		ajax.open("GET", "../digiid/ajax", true);
-		ajax.onreadystatechange =
-			function ()
+digiid_interval_resource = setInterval(function() {
+	var ajax = new XMLHttpRequest();
+	ajax.open("GET", "../digiid/ajax", true);
+	ajax.onreadystatechange = function () {
+		if(ajax.readyState != 4 || ajax.status != 200)
+		{
+			return;
+		}
+		else if(ajax.responseText > '')
+		{
+			var json = JSON.parse(ajax.responseText);
+
+			if(json.html > '')
 			{
-				if(ajax.readyState != 4 || ajax.status != 200)
-				{
-					return;
-				}
-				else if(ajax.responseText > '')
-				{
-					var json = JSON.parse(ajax.responseText);
+				document.getElementById('digiid').innerHTML = json.html;
+			}
 
-					if(json.html > '')
-					{
-						document.getElementById('digiid').innerHTML = json.html;
-					}
+			if(json.stop > 0)
+			{
+				window.clearInterval(digiid_interval_resource);
+			}
 
-					if(json.stop > 0)
-					{
-						window.clearInterval(digiid_interval_resource);
-					}
-
-					if(json.reload > 0)
-					{
-                        setTimeout(function(){
-                            document.location.href="../";
-                        }, 3000);
-					}
-				}
-			};
-		ajax.send();
-	},
-	2000
-);
+			if(json.reload > 0)
+			{
+										setTimeout(function(){
+												document.location.href="../";
+										}, 3000);
+			}
+		}
+	};
+	ajax.send()
+}, 4000);
 </script>
 <!-- INCLUDE overall_header.html -->
 
