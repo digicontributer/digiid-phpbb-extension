@@ -4,29 +4,21 @@ digiid_interval_resource = setInterval(function() {
 	var ajax = new XMLHttpRequest();
 	ajax.open("GET", "../digiid/ajax", true);
 	ajax.onreadystatechange = function () {
-		if(ajax.readyState != 4 || ajax.status != 200)
-		{
+		if(ajax.readyState != 4 || ajax.status != 200) {
 			return;
 		}
-		else if(ajax.responseText > '')
-		{
+		else if(ajax.responseText > '') {
 			var json = JSON.parse(ajax.responseText);
-
-			if(json.html > '')
-			{
+			if(json.html > '') {
 				document.getElementById('digiid').innerHTML = json.html;
 			}
-
-			if(json.stop > 0)
-			{
+			if(json.stop > 0) {
 				window.clearInterval(digiid_interval_resource);
 			}
-
-			if(json.reload > 0)
-			{
-										setTimeout(function(){
-												document.location.href="../";
-										}, 3000);
+			if(json.reload > 0) {
+				setTimeout(function(){
+						document.location.href="../";
+				}, 1000);
 			}
 		}
 	};
